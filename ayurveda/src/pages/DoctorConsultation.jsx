@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DoctorList from '../components/DoctorList';
 import './DoctorConsultation.css';
 import ChatAI from '../components/ChatAI';
+import Insights from '../components/Insights';
 
 const DoctorConsultation = () => {
   const [activeTab, setActiveTab] = useState('doctors');
@@ -32,7 +33,7 @@ const DoctorConsultation = () => {
       <div className="content">
         {activeTab === 'doctors' && <DoctorList />}
         {activeTab === 'chat' && <ChatAI />}
-        {activeTab === 'insights' && <div>Ayurveda Insights (Coming Soon)</div>}
+        {activeTab === 'insights' && <Insights />}
       </div>
     </div>
   );

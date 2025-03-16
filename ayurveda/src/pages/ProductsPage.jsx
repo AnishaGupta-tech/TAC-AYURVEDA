@@ -48,18 +48,18 @@ const ProductPage = () => {
 
   // Shop by category options with images
   const productCategories = [
-    { name: "Herbs", image: "https://via.placeholder.com/100" },
-    { name: "Oils", image: "https://via.placeholder.com/100" },
-    { name: "Teas", image: "https://via.placeholder.com/100" },
-    { name: "Supplements", image: "https://via.placeholder.com/100" },
+    { name: "Herbs", image: "https://via.placeholder.com/300x150?text=Herbs" },
+    { name: "Oils", image: "https://via.placeholder.com/300x150?text=Oils" },
+    { name: "Teas", image: "https://via.placeholder.com/300x150?text=Teas" },
+    { name: "Supplements", image: "https://via.placeholder.com/300x150?text=Supplements" },
   ];
 
   // Shop by concern options with images
   const healthConcerns = [
-    { name: "Hairfall", image: "https://via.placeholder.com/100" },
-    { name: "Acne", image: "https://via.placeholder.com/100" },
-    { name: "Allergy", image: "https://via.placeholder.com/100" },
-    { name: "Dandruff", image: "https://via.placeholder.com/100" },
+    { name: "Hairfall", image: "https://via.placeholder.com/300x150?text=Hairfall" },
+    { name: "Acne", image: "https://via.placeholder.com/300x150?text=Acne" },
+    { name: "Allergy", image: "https://via.placeholder.com/300x150?text=Allergy" },
+    { name: "Dandruff", image: "https://via.placeholder.com/300x150?text=Dandruff" },
   ];
 
   // Bestsellers
@@ -88,7 +88,7 @@ const ProductPage = () => {
 
       {/* Banner */}
       <div className="banner">
-        <img src="https://via.placeholder.com/1200x300" alt="Banner" />
+        <img src="https://via.placeholder.com/1200x300?text=Ayurveda+Wellness" alt="Banner" />
       </div>
 
       {/* Filters */}

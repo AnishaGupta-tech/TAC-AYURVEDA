@@ -16,11 +16,7 @@ const Hero = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <img
-            src="https://storage.googleapis.com/a1aa/image/3qyZQp0Z2w0bUYGMuE3CVMhGVe4ijsloJWOOH89ECAM.jpg"
-            alt="TAC"
-            style={{ width: "40px", height: "40px" }}
-          />
+          
           <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#8B4513" }}>
             TAC Ayurveda
           </span>
@@ -38,7 +34,7 @@ const Hero = () => {
           <Link to="/doctor-consultation" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
             Consult
           </Link>
-          <Link to="/products" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
+          <Link to="https://theayurvedaco.com/?srsltid=AfmBOorrMZbDUhXLvZxuduyLvT2oXA4o8wxk3TD_INm0CdfFOHFJnWkP" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
             Products
           </Link>
           <Link to="/guidance" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>

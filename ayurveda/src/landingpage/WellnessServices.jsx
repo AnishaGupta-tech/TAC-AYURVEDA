@@ -62,6 +62,13 @@ const WellnessServices = () => {
                   "Holistic therapies to reduce stress and promote relaxation.",
                 doctors: "35+ Doctors",
               },
+              {
+                icon: "https://storage.googleapis.com/a1aa/image/ayurvedic-icon-5.png", // Replace with ayurvedic-themed icon
+                title: "Heart Management",
+                description:
+                  "Holistic therapies to reduce heart rate and promote relaxation.",
+                doctors: "35+ Doctors",
+              },
             ].map((service, index) => (
               <div
                 key={index}
@@ -214,7 +221,7 @@ const WellnessServices = () => {
             {/* Appointment Image */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
               <img
-                src="https://storage.googleapis.com/a1aa/image/ayurvedic-appointment.jpg" // Replace with ayurvedic-themed image
+                src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with ayurvedic-themed image
                 alt="Ayurvedic Doctor"
                 style={{ width: "100%", maxWidth: "400px", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}
               />

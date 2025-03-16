@@ -41,7 +41,7 @@ const HealthBlogs = () => {
             }}
           >
             <img
-              src="https://placehold.co/600x400"
+              src="https://images.unsplash.com/photo-1521146250551-a5578dcc2e64?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Doctor with a stethoscope"
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
             />
@@ -76,7 +76,7 @@ const HealthBlogs = () => {
             }}
           >
             <img
-              src="https://placehold.co/600x400"
+              src="https://plus.unsplash.com/premium_photo-1683134386851-daff99d8abef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Doctor talking to a patient"
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
             />
