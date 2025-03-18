@@ -1,121 +1,171 @@
+/* General Styles */
 .doctor-list {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff; /* White background */
+  min-height: 100vh; /* Cover full page height */
+  width: 100%; /* Cover full page width */
   padding: 20px;
+  box-sizing: border-box;
 }
 
+h2 {
+  text-align: center;
+  color: #5d4037; /* Rich brown for the title */
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Filter Section */
 .filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .filters input {
-  margin-right: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #d7ccc8; /* Light brown border */
   border-radius: 5px;
+  font-size: 1rem;
+  color: #5d4037; /* Rich brown text */
+  outline: none;
 }
 
+.filters input::placeholder {
+  color: #a1887f; /* Light brown placeholder */
+}
+
+/* Doctor Cards */
 .cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  padding: 0 20px;
 }
 
 .card {
-  background-color: white;
-  padding: 20px;
+  background-color: #f5f5f5; /* Light gray background */
+  border: 1px solid #d7ccc8; /* Light brown border */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  padding: 20px;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .doctor-photo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-bottom: 10px;
-  object-fit: cover;
+  margin-bottom: 15px;
 }
 
 .card h3 {
-  margin: 0 0 10px;
-  color: #2c3e50;
+  color: #5d4037; /* Rich brown for doctor name */
+  margin-bottom: 10px;
 }
 
 .card p {
+  color: #6d4c41; /* Medium brown for details */
   margin: 5px 0;
-  color: #7f8c8d;
 }
 
+/* Buttons */
 .book-button, .booked-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
   padding: 10px 20px;
+  border: none;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+}
+
+.book-button {
+  background-color: #5d4037; /* Rich brown */
+  color: #ffffff; /* White text */
 }
 
 .book-button:hover {
-  background-color: #2980b9;
+  background-color: #4e342e; /* Darker brown on hover */
 }
 
 .booked-button {
-  background-color: #bdc3c7;
+  background-color: #d7ccc8; /* Light brown */
+  color: #5d4037; /* Rich brown text */
   cursor: not-allowed;
 }
 
+/* Booking Popup */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .popup-content {
-  background-color: white;
+  background-color: #ffffff; /* White background */
   padding: 20px;
   border-radius: 10px;
   width: 300px;
   text-align: center;
 }
 
+.popup-content h3 {
+  color: #5d4037; /* Rich brown for title */
+  margin-bottom: 20px;
+}
+
 .popup-content input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border: 1px solid #d7ccc8; /* Light brown border */
   border-radius: 5px;
+  font-size: 1rem;
+  color: #5d4037; /* Rich brown text */
+  outline: none;
 }
 
-.popup-content button {
-  margin: 5px;
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-buttons button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.popup-content button:first-of-type {
-  background-color: #3498db;
-  color: white;
+.popup-buttons button:first-child {
+  background-color: #5d4037; /* Rich brown */
+  color: #ffffff; /* White text */
 }
 
-.popup-content button:first-of-type:hover {
-  background-color: #2980b9;
+.popup-buttons button:first-child:hover {
+  background-color: #4e342e; /* Darker brown on hover */
 }
 
-.popup-content button:last-of-type {
-  background-color: #e74c3c;
-  color: white;
+.popup-buttons button:last-child {
+  background-color: #d7ccc8; /* Light brown */
+  color: #5d4037; /* Rich brown text */
 }
 
-.popup-content button:last-of-type:hover {
-  background-color: #c0392b;
+.popup-buttons button:last-child:hover {
+  background-color: #bcaaa4; /* Darker light brown on hover */
 }

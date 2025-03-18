@@ -1,44 +1,76 @@
+/* General Styles */
 .doctor-consultation {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff; /* White background */
+  min-height: 100vh; /* Cover entire page height */
+  width: 100%; /* Cover entire page width */
+  padding: 20px 0; /* Add padding for spacing */
 }
 
 .title {
   text-align: center;
-  color: #2c3e50;
+  color: #5d4037; /* Rich brown for the title */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
+/* Tabs */
 .tabs {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  background-color: #efebe9; /* Light brown background for tabs */
+  padding: 10px 0; /* Add padding for spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .tabs button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  background-color: #d7ccc8; /* Light brown for buttons */
   border: none;
-  background-color: #ecf0f1;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.tabs button.active {
-  background-color: #3498db;
-  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-size: 1rem;
+  color: #5d4037; /* Dark brown text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tabs button:hover {
-  background-color: #bdc3c7;
+  background-color: #bcaaa4; /* Darker brown on hover */
+  transform: translateY(-2px);
 }
 
+.tabs button.active {
+  background-color: #5d4037; /* Rich brown for active tab */
+  color: #ffffff; /* White text for active tab */
+  font-weight: 600;
+}
+
+/* Content Area */
 .content {
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* White background */
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 1200px; /* Limit content width for readability */
+}
+
+/* Full-width design */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Optional: Add a subtle brown border at the top */
+.doctor-consultation::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: #5d4037; /* Rich brown */
 }

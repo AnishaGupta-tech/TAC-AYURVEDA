@@ -9,7 +9,7 @@ const DoctorConsultation = () => {
 
   return (
     <div className="doctor-consultation">
-      <h1 className="title">Ayurveda Doctor Consultation</h1>
+      <h1 className="title">Ayurvedic Consultation</h1>
       <div className="tabs">
         <button
           className={activeTab === 'doctors' ? 'active' : ''}

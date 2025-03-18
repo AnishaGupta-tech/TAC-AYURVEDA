@@ -15,6 +15,8 @@ import PrakritiAnalysis from './pages/PrakritiAnalysis'; // Prakriti Analysis pa
 import ProductsPage from './pages/ProductsPage';
 import GuidancePage from './pages/GuidancePage';
 import DoctorConsultation from './pages/DoctorConsultation'; 
+import AuthPage from './landingpage/AuthPage'; // Auth page
+
 
 
 const root = createRoot(document.getElementById('root'));
@@ -44,6 +46,7 @@ root.render(
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/guidance" element={<GuidancePage />} />
         <Route path="/doctor-consultation" element={<DoctorConsultation />} /> {/* New route */}
+        <Route path="/authpage" element={<AuthPage />} />
         
       </Routes>
     </Router>

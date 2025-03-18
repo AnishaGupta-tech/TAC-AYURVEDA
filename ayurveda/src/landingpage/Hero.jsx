@@ -1,7 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const navigate = useNavigate();
+
+  // Check login state on component mount
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn"); // Get login state from localStorage
+    if (loggedIn === "true") {
+      setIsLoggedIn(true); // Update state if user is logged in
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn"); // Remove login state from localStorage
+    setIsLoggedIn(false); // Update state to reflect logout
+    navigate("/"); // Redirect to the home page (or any other page)
+  };
+
   return (
     <div style={{ fontFamily: "'Roboto', sans-serif", backgroundColor: "#FFFFFF" }}>
       {/* Header Section */}
@@ -16,7 +33,6 @@ const Hero = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          
           <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#8B4513" }}>
             TAC Ayurveda
           </span>
@@ -25,7 +41,7 @@ const Hero = () => {
           <a href="#" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
             Home
           </a>
-          <a href="https://theayurvedaco.com/?srsltid=AfmBOopyns51egEY-3Y9zvP3TtNRgqQd9a3jfVRFLLuOEA8udn4ZBJLJ" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
+          <a href="https://theayurvedaco.com/pages/about-us" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
             About us
           </a>
           <Link to="/advanced-diagnostics" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
@@ -41,19 +57,40 @@ const Hero = () => {
             Guidance
           </Link>
         </nav>
-        <button
-          style={{
-            backgroundColor: "#8B4513",
-            color: "#FFFFFF",
-            padding: "0.5rem 1rem",
-            borderRadius: "9999px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "0.875rem",
-          }}
-        >
-          Book Appointment
-        </button>
+
+        {/* Conditionally render Login or Logout button */}
+        {!isLoggedIn ? (
+          <Link
+            to="/authpage"
+            style={{
+              backgroundColor: "#8B4513",
+              color: "#FFFFFF",
+              padding: "0.5rem 1rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "0.875rem",
+              textDecoration: "none",
+            }}
+          >
+            LOG IN
+          </Link>
+        ) : (
+          <button
+            onClick={handleLogout}
+            style={{
+              backgroundColor: "#8B4513",
+              color: "#FFFFFF",
+              padding: "0.5rem 1rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "0.875rem",
+            }}
+          >
+            LOG OUT
+          </button>
+        )}
       </header>
 
       {/* Main Content Section */}

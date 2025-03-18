@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
 import FeatureCard from './FeatureCard';
-import Footer from './Footer';
+
 
 const AdvancedDiagnostics = () => {
   const features = [
@@ -83,7 +83,7 @@ const AdvancedDiagnostics = () => {
           ))}
         </div>
       </div>
-      <Footer />
+      
     </div>
   );
 };
