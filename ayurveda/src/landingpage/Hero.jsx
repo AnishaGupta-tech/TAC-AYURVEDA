@@ -34,7 +34,7 @@ const Hero = () => {
       >
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#8B4513" }}>
-            TAC Ayurveda
+            AyurSphere
           </span>
         </div>
         <nav style={{ display: "flex", gap: "1.5rem", color: "#4B5563" }}>

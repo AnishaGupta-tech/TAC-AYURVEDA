@@ -8,9 +8,12 @@ const ProductPage = () => {
   const [activeFilters, setActiveFilters] = useState({ category: "", concern: "", price: "" });
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch products from backend
+  // ✅ Get backend base URL from .env
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+  // ✅ Fetch products from backend
   useEffect(() => {
-    axios.get("/api/products")
+    axios.get(`${baseURL}/api/products`)
       .then((response) => {
         setAllProducts(response.data);
       })
@@ -39,8 +42,8 @@ const ProductPage = () => {
   // Filter products based on selected filters and search query
   const getFilteredProducts = allProducts.filter((product) => {
     return (
-      (activeFilters.category === "" || product.category === activeFilters.category) &&
-      (activeFilters.concern === "" || product.concerns.includes(activeFilters.concern)) &&
+      (activeFilters.category === "" || product.category.toLowerCase() === activeFilters.category.toLowerCase()) &&
+      (activeFilters.concern === "" || product.concerns.includes(activeFilters.concern.toLowerCase())) &&
       (activeFilters.price === "" || product.price <= parseInt(activeFilters.price)) &&
       (searchTerm === "" || product.name.toLowerCase().includes(searchTerm.toLowerCase()))
     );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-
 import '../styles.css';
 
 const HealthInsights = () => {
@@ -14,11 +13,14 @@ const HealthInsights = () => {
     stressLevel: '',
   });
 
-  // Fetch health data from the backend
+  // ✅ Use environment variable for backend base URL
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+  // ✅ Fetch health data from backend
   useEffect(() => {
     const fetchHealthData = async () => {
       try {
-        const response = await fetch('/api/health-data'); // Use proxy path
+        const response = await fetch(`${baseURL}/api/health-data`);
         if (!response.ok) {
           throw new Error('Failed to fetch health data');
         }
@@ -30,21 +32,22 @@ const HealthInsights = () => {
         setLoading(false);
       }
     };
-  
-    fetchHealthData();
-  }, []);
 
-  // Handle manual data input
+    fetchHealthData();
+  }, [baseURL]);
+
+  // ✅ Handle manual input
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setManualData({ ...manualData, [name]: value });
   };
 
+  // ✅ Submit manual data to backend
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/manual-health-data', {
+      const response = await fetch(`${baseURL}/api/manual-health-data`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(manualData),
@@ -169,7 +172,6 @@ const HealthInsights = () => {
           </form>
         </div>
       </div>
-      
     </div>
   );
 };

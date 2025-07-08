@@ -8,9 +8,12 @@ const DoctorList = () => {
   const [bookingDetails, setBookingDetails] = useState({ name: '', date: '', time: '' });
   const [filters, setFilters] = useState({ specialization: '', disease: '' });
 
+  // Get base URL from environment variable
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
   // Fetch doctors from the backend
   useEffect(() => {
-    axios.get('http://localhost:5000/api/doctors')
+    axios.get(`${baseURL}/api/doctors`)
       .then((response) => setDoctors(response.data))
       .catch((error) => console.error(error));
   }, []);
@@ -29,7 +32,7 @@ const DoctorList = () => {
 
     try {
       // Send booking request to the backend
-      const response = await axios.post('http://localhost:5000/api/appointments', {
+      const response = await axios.post(`${baseURL}/api/appointments`, {
         doctorId: selectedDoctor.id,
         userId: 'user123', // Replace with actual user ID
         date: bookingDetails.date,
