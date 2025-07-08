@@ -28,7 +28,7 @@ AyurSphere is a full-stack web application designed to modernize Ayurvedic healt
 
 ## 🚀 Live Demo
 
-👉 [Visit AyurSphere](https://ayursphere.vercel.app)
+👉 [Visit AyurSphere](https://2gj9k7zs-5173.inc1.devtunnels.ms/)
 
 ---
 
