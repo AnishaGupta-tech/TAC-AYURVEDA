@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from './AuthGate';
@@ -14,14 +13,19 @@ const DoctorList = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Get base URL from environment variable
-  const baseURL = import.meta.env.VITE_API_BASE_URL;
-
-  // Fetch doctors from the backend
+  // Fetch doctors from Supabase
   useEffect(() => {
-    axios.get(`${baseURL}/api/doctors`)
-      .then((response) => setDoctors(response.data))
-      .catch((error) => console.error(error));
+    supabase
+      .from('doctors')
+      .select('*')
+      .order('id', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          console.error('Error fetching doctors:', error);
+          return;
+        }
+        setDoctors(data || []);
+      });
   }, []);
 
   // Handle booking appointment
@@ -48,16 +52,8 @@ const DoctorList = () => {
     setBookingError('');
 
     try {
-      // Send booking request to the backend (marks the demo doctor as booked)
-      await axios.post(`${baseURL}/api/appointments`, {
-        doctorId: selectedDoctor.id,
-        userId: user.id,
-        date: bookingDetails.date,
-        slot: bookingDetails.time,
-      });
-
-      // Also persist the appointment against the real account so it shows on Profile
-      const { error: supabaseError } = await supabase.from('appointments').insert({
+      // Persist the appointment against the real account so it shows on Profile
+      const { error: appointmentError } = await supabase.from('appointments').insert({
         user_id: user.id,
         doctor_id: selectedDoctor.id,
         doctor_name: selectedDoctor.name,
@@ -66,17 +62,28 @@ const DoctorList = () => {
         appointment_slot: bookingDetails.time,
       });
 
-      if (supabaseError) {
-        console.error('Error saving appointment to account:', supabaseError);
-        setBookingError('Booked, but we could not save this to your profile: ' + supabaseError.message);
+      if (appointmentError) {
+        console.error('Error saving appointment:', appointmentError);
+        setBookingError(appointmentError.message);
         return;
       }
 
-      // Update the doctor's status to "booked"
-      const updatedDoctors = doctors.map((doctor) =>
-        doctor.id === selectedDoctor.id ? { ...doctor, booked: true } : doctor
+      // Mark the doctor as booked (shared demo resource)
+      const { error: doctorUpdateError } = await supabase
+        .from('doctors')
+        .update({ booked: true })
+        .eq('id', selectedDoctor.id);
+
+      if (doctorUpdateError) {
+        console.error('Error updating doctor booking status:', doctorUpdateError);
+      }
+
+      // Update local state
+      setDoctors((prev) =>
+        prev.map((doctor) =>
+          doctor.id === selectedDoctor.id ? { ...doctor, booked: true } : doctor
+        )
       );
-      setDoctors(updatedDoctors);
 
       // Close the popup
       setSelectedDoctor(null);
@@ -85,7 +92,7 @@ const DoctorList = () => {
       alert('Appointment booked successfully!');
     } catch (error) {
       console.error('Error booking appointment:', error);
-      alert('Failed to book appointment. Please try again.');
+      setBookingError('Failed to book appointment. Please try again.');
     }
   };
 
@@ -129,10 +136,12 @@ const DoctorList = () => {
               <h3>{doctor.name}</h3>
               <span className="ayur-pill">🌿 {doctor.specialization}</span>
               {doctor.location && <p className="doctor-location">📍 {doctor.location}</p>}
-              {doctor.experienceYears && (
-                <p className="doctor-experience">{doctor.experienceYears}+ years experience</p>
+              {doctor.experience_years && (
+                <p className="doctor-experience">{doctor.experience_years}+ years experience</p>
               )}
-              <p><strong>Availability:</strong> {doctor.availability[0].date} - {doctor.availability[0].slots.join(', ')}</p>
+              {doctor.available_date && (
+                <p><strong>Availability:</strong> {doctor.available_date} - {(doctor.available_slots || []).join(', ')}</p>
+              )}
               {doctor.booked ? (
                 <button disabled className="booked-button">Booked</button>
               ) : (
