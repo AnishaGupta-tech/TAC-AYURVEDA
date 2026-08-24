@@ -1,98 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const navigate = useNavigate();
 
-  // Check login state on component mount
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn"); // Get login state from localStorage
-    if (loggedIn === "true") {
-      setIsLoggedIn(true); // Update state if user is logged in
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); // Remove login state from localStorage
-    setIsLoggedIn(false); // Update state to reflect logout
-    navigate("/"); // Redirect to the home page (or any other page)
-  };
-
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", backgroundColor: "#FFFFFF" }}>
-      {/* Header Section */}
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "1.5rem",
-          backgroundColor: "#FFFFFF",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#8B4513" }}>
-            AyurSphere
-          </span>
-        </div>
-        <nav style={{ display: "flex", gap: "1.5rem", color: "#4B5563" }}>
-          <a href="#" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            Home
-          </a>
-          <a href="https://theayurvedaco.com/pages/about-us" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            About us
-          </a>
-          <Link to="/advanced-diagnostics" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            Advance Diagnostics
-          </Link>
-          <Link to="/doctor-consultation" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            Consult
-          </Link>
-          <Link to="https://theayurvedaco.com/?srsltid=AfmBOorrMZbDUhXLvZxuduyLvT2oXA4o8wxk3TD_INm0CdfFOHFJnWkP" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            Products
-          </Link>
-          <Link to="/guidance" style={{ color: "inherit", textDecoration: "none", hover: { color: "#A0522D" } }}>
-            Guidance
-          </Link>
-        </nav>
-
-        {/* Conditionally render Login or Logout button */}
-        {!isLoggedIn ? (
-          <Link
-            to="/authpage"
-            style={{
-              backgroundColor: "#8B4513",
-              color: "#FFFFFF",
-              padding: "0.5rem 1rem",
-              borderRadius: "9999px",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "0.875rem",
-              textDecoration: "none",
-            }}
-          >
-            LOG IN
-          </Link>
-        ) : (
-          <button
-            onClick={handleLogout}
-            style={{
-              backgroundColor: "#8B4513",
-              color: "#FFFFFF",
-              padding: "0.5rem 1rem",
-              borderRadius: "9999px",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "0.875rem",
-            }}
-          >
-            LOG OUT
-          </button>
-        )}
-      </header>
-
+    <div style={{ fontFamily: "var(--font-sans)", backgroundColor: "var(--color-surface)" }}>
       {/* Main Content Section */}
       <main
         style={{
@@ -114,8 +27,8 @@ const Hero = () => {
           <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "1.5rem", alignItems: "flex-start" }}>
             <div
               style={{
-                backgroundColor: "#F5DEB3",
-                color: "#8B4513",
+                backgroundColor: "var(--color-bg-alt)",
+                color: "var(--color-secondary-dark)",
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
                 display: "inline-block",
@@ -129,41 +42,65 @@ const Hero = () => {
               style={{
                 fontSize: "3rem",
                 fontWeight: "bold",
-                color: "#1F2937",
+                color: "var(--color-text)",
               }}
             >
-              Your Wellness, <span style={{ color: "#8B4513" }}>Our Mission</span>
+              Your Wellness, <span style={{ color: "var(--color-secondary-dark)" }}>Our Mission</span>
             </h1>
-            <p style={{ color: "#4B5563" }}>
+            <p style={{ color: "var(--color-text-muted)" }}>
               We are dedicated to providing compassionate and professional healthcare services,
               tailored to meet your unique needs, so you can thrive and enjoy a healthier, more
               fulfilling life.
             </p>
-            <button
-              style={{
-                backgroundColor: "#8B4513",
-                color: "#FFFFFF",
-                padding: "0.5rem 1rem",
-                borderRadius: "9999px",
-                border: "none",
-                cursor: "pointer",
-                fontSize: "0.75rem",
-              }}
-            >
-              Learn More
-            </button>
+            <div style={{ display: "flex", gap: "0.75rem" }}>
+              <button
+                onClick={() => navigate("/products")}
+                style={{
+                  backgroundColor: "var(--color-secondary-dark)",
+                  color: "var(--color-surface)",
+                  padding: "0.6rem 1.25rem",
+                  borderRadius: "9999px",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                }}
+              >
+                Shop Now
+              </button>
+              <button
+                onClick={() => navigate("/doctor-consultation")}
+                style={{
+                  backgroundColor: "transparent",
+                  color: "var(--color-primary)",
+                  padding: "0.6rem 1.25rem",
+                  borderRadius: "9999px",
+                  border: "2px solid var(--color-primary)",
+                  cursor: "pointer",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                }}
+              >
+                Consult Vaidya
+              </button>
+            </div>
+            <div style={{ display: "flex", gap: "6px", paddingTop: "0.25rem" }} aria-hidden="true">
+              <span style={{ width: 22, height: 4, borderRadius: 2, backgroundColor: "var(--color-secondary-dark)" }} />
+              <span style={{ width: 8, height: 4, borderRadius: 2, backgroundColor: "var(--color-border)" }} />
+              <span style={{ width: 8, height: 4, borderRadius: 2, backgroundColor: "var(--color-border)" }} />
+            </div>
             <div style={{ display: "flex", gap: "2rem", paddingTop: "1.5rem" }}>
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "#1F2937" }}>700+</h2>
-                <p style={{ color: "#4B5563" }}>Patients served</p>
+                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "var(--color-text)" }}>700+</h2>
+                <p style={{ color: "var(--color-text-muted)" }}>Patients served</p>
               </div>
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "#1F2937" }}>3M+</h2>
-                <p style={{ color: "#4B5563" }}>Reports delivered</p>
+                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "var(--color-text)" }}>3M+</h2>
+                <p style={{ color: "var(--color-text-muted)" }}>Reports delivered</p>
               </div>
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "#1F2937" }}>150+</h2>
-                <p style={{ color: "#4B5563" }}>Expert specialist</p>
+                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "var(--color-text)" }}>150+</h2>
+                <p style={{ color: "var(--color-text-muted)" }}>Expert specialist</p>
               </div>
             </div>
           </div>
@@ -187,15 +124,15 @@ const Hero = () => {
                 position: "absolute",
                 top: "0",
                 right: "0",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "var(--color-surface)",
                 padding: "1rem",
                 borderRadius: "0.5rem",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "#8B4513" }}>85%</h2>
-                <p style={{ color: "#4B5563" }}>Successful diagnosis</p>
+                <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "var(--color-secondary-dark)" }}>85%</h2>
+                <p style={{ color: "var(--color-text-muted)" }}>Successful diagnosis</p>
               </div>
             </div>
             <div
@@ -203,33 +140,35 @@ const Hero = () => {
                 position: "absolute",
                 top: "25%",
                 right: "0",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "var(--color-surface)",
                 padding: "0.5rem",
                 borderRadius: "9999px",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <img
-                src="https://storage.googleapis.com/a1aa/image/ayurvedic-icon-1.png" // Replace with an ayurvedic-themed icon
-                alt="Herb icon"
-                style={{ width: "48px", height: "48px" }}
-              />
+              <span
+                role="img"
+                aria-label="Herb icon"
+                style={{ width: "48px", height: "48px", fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}
+              >
+                🌿
+              </span>
             </div>
             <div
               style={{
                 position: "absolute",
                 bottom: "0",
                 right: "0",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "var(--color-surface)",
                 padding: "1rem",
                 borderRadius: "0.5rem",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <p style={{ color: "#4B5563" }}>Have a question?</p>
+              <p style={{ color: "var(--color-text-muted)" }}>Have a question?</p>
               <a
                 href="mailto:info@tacayurveda.com"
-                style={{ color: "#8B4513", textDecoration: "none" }}
+                style={{ color: "var(--color-secondary-dark)", textDecoration: "none" }}
               >
                 info@tacayurveda.com
               </a>
@@ -239,17 +178,19 @@ const Hero = () => {
                 position: "absolute",
                 bottom: "25%",
                 right: "0",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "var(--color-surface)",
                 padding: "0.5rem",
                 borderRadius: "9999px",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <img
-                src="https://storage.googleapis.com/a1aa/image/ayurvedic-icon-2.png" // Replace with an ayurvedic-themed icon
-                alt="Ayurvedic Doctor icon"
-                style={{ width: "48px", height: "48px" }}
-              />
+              <span
+                role="img"
+                aria-label="Ayurvedic Doctor icon"
+                style={{ width: "48px", height: "48px", fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}
+              >
+                🩺
+              </span>
             </div>
           </div>
         </div>

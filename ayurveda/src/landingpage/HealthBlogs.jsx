@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HealthBlogs = () => {
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", backgroundColor: "#F5F5DC" }}>
+    <div style={{ fontFamily: "var(--font-sans)", backgroundColor: "var(--color-bg-alt)" }}>
       {/* Health Blogs Section */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem 1rem" }}>
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
           <span
             style={{
               display: "inline-block",
-              backgroundColor: "#F5DEB3",
-              color: "#8B4513",
+              backgroundColor: "var(--color-bg-alt)",
+              color: "var(--color-secondary-dark)",
               padding: "0.5rem 1rem",
               borderRadius: "9999px",
               fontSize: "0.875rem",
@@ -18,9 +19,13 @@ const HealthBlogs = () => {
           >
             Our latest news
           </span>
-          <h1 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "#1F2937", marginTop: "0.5rem" }}>
+          <h1 style={{ fontSize: "1.875rem", fontWeight: "bold", color: "var(--color-text)", marginTop: "0.5rem" }}>
             Check out our most recent health blogs.
           </h1>
+          <p style={{ color: "var(--color-text-muted)", maxWidth: "560px", margin: "0.75rem auto 0" }}>
+            Practical Ayurvedic insights on diet, lifestyle, and natural remedies, written to help
+            you apply ancient wisdom to everyday wellness.
+          </p>
         </div>
 
         {/* Blog Posts */}
@@ -34,7 +39,7 @@ const HealthBlogs = () => {
           {/* Blog Post 1 */}
           <div
             style={{
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "var(--color-surface)",
               borderRadius: "10px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               overflow: "hidden",
@@ -49,8 +54,8 @@ const HealthBlogs = () => {
               <span
                 style={{
                   display: "inline-block",
-                  backgroundColor: "#F5DEB3",
-                  color: "#8B4513",
+                  backgroundColor: "var(--color-bg-alt)",
+                  color: "var(--color-secondary-dark)",
                   padding: "0.5rem 1rem",
                   borderRadius: "9999px",
                   fontSize: "0.875rem",
@@ -59,17 +64,17 @@ const HealthBlogs = () => {
               >
                 Exercise & Fitness
               </span>
-              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1F2937", marginBottom: "0.5rem" }}>
+              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "var(--color-text)", marginBottom: "0.5rem" }}>
                 The skincare routine that works: expert tips
               </h2>
-              <p style={{ color: "#6B7280", fontSize: "0.875rem" }}>July 18, 2022</p>
+              <p style={{ color: "var(--color-text-muted)", fontSize: "0.875rem" }}>July 18, 2022</p>
             </div>
           </div>
 
           {/* Blog Post 2 */}
           <div
             style={{
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "var(--color-surface)",
               borderRadius: "10px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               overflow: "hidden",
@@ -84,8 +89,8 @@ const HealthBlogs = () => {
               <span
                 style={{
                   display: "inline-block",
-                  backgroundColor: "#F5DEB3",
-                  color: "#8B4513",
+                  backgroundColor: "var(--color-bg-alt)",
+                  color: "var(--color-secondary-dark)",
                   padding: "0.5rem 1rem",
                   borderRadius: "9999px",
                   fontSize: "0.875rem",
@@ -94,17 +99,17 @@ const HealthBlogs = () => {
               >
                 Mental Health
               </span>
-              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1F2937", marginBottom: "0.5rem" }}>
+              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "var(--color-text)", marginBottom: "0.5rem" }}>
                 The art of managing business and patient.
               </h2>
-              <p style={{ color: "#6B7280", fontSize: "0.875rem" }}>Aug 26, 2024</p>
+              <p style={{ color: "var(--color-text-muted)", fontSize: "0.875rem" }}>Aug 26, 2024</p>
             </div>
           </div>
 
           {/* Blog Post 3 (CTA) */}
           <div
             style={{
-              backgroundColor: "#8B4513",
+              backgroundColor: "var(--color-secondary-dark)",
               borderRadius: "10px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               overflow: "hidden",
@@ -118,8 +123,8 @@ const HealthBlogs = () => {
               <span
                 style={{
                   display: "inline-block",
-                  backgroundColor: "#F5DEB3",
-                  color: "#8B4513",
+                  backgroundColor: "var(--color-bg-alt)",
+                  color: "var(--color-secondary-dark)",
                   padding: "0.5rem 1rem",
                   borderRadius: "9999px",
                   fontSize: "0.875rem",
@@ -128,10 +133,10 @@ const HealthBlogs = () => {
               >
                 Children's Health
               </span>
-              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#FFFFFF", marginBottom: "0.5rem" }}>
+              <h2 style={{ fontSize: "1.125rem", fontWeight: "600", color: "var(--color-surface)", marginBottom: "0.5rem" }}>
                 Successful transitional rehab; more than just exercise
               </h2>
-              <div style={{ color: "#FFFFFF", fontSize: "1.5rem" }}>
+              <div style={{ color: "var(--color-surface)", fontSize: "1.5rem" }}>
                 <i className="fas fa-arrow-right"></i>
               </div>
             </div>
@@ -140,101 +145,19 @@ const HealthBlogs = () => {
 
         {/* View All Posts Link */}
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "2rem" }}>
-          <a
-            href="#"
+          <Link
+            to="/guidance"
             style={{
-              color: "#8B4513",
+              color: "var(--color-secondary-dark)",
               display: "flex",
               alignItems: "center",
               textDecoration: "none",
             }}
           >
             View all Post <i className="fas fa-arrow-right" style={{ marginLeft: "0.5rem" }}></i>
-          </a>
+          </Link>
         </div>
       </div>
-
-      {/* Footer Section */}
-      <footer style={{ backgroundColor: "#1F2937", color: "#FFFFFF", padding: "2rem 1rem" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1rem" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "2rem",
-            }}
-          >
-            {/* Get in Touch */}
-            <div>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1rem" }}>
-                Get in touch
-              </h3>
-              <p style={{ marginBottom: "0.5rem" }}>Call us</p>
-              <p style={{ marginBottom: "0.5rem" }}>08122445902</p>
-              <p style={{ marginBottom: "0.5rem" }}>Opening time</p>
-              <p style={{ marginBottom: "0.5rem" }}>Mon-sat: 24 hours</p>
-            </div>
-
-            {/* Our Services */}
-            <div>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1rem" }}>
-                Our services
-              </h3>
-              <ul>
-                {["Orthopedics", "Neurology", "Eye care", "Dermatology", "Dental"].map(
-                  (service) => (
-                  <li key={service} style={{ marginBottom: "0.5rem" }}>
-                    {service}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Useful Links */}
-            <div>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "600", marginBottom: "1rem" }}>
-                Useful links
-              </h3>
-              <ul>
-                {["About us", "Appointment", "Patient info", "Testimonial"].map(
-                  (link) => (
-                  <li key={link} style={{ marginBottom: "0.5rem" }}>
-                    {link}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* App Stores and Social Media */}
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ marginBottom: "1rem" }}>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                  alt="Google Play Store"
-                  style={{ width: "150px", marginBottom: "0.5rem" }}
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/6/67/Download_on_the_App_Store_Badge.svg"
-                  alt="Apple App Store"
-                  style={{ width: "150px" }}
-                />
-              </div>
-              <div style={{ display: "flex", gap: "1rem" }}>
-                {["fab fa-facebook-f", "fab fa-twitter", "fab fa-instagram", "fab fa-linkedin-in"].map(
-                  (icon) => (
-                  <a
-                    key={icon}
-                    href="#"
-                    style={{ color: "#FFFFFF", fontSize: "1.25rem" }}
-                  >
-                    <i className={icon}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

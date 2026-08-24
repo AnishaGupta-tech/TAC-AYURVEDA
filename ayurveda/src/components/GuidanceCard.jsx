@@ -1,12 +1,14 @@
 import React from 'react';
 
-const GuidanceCard = ({ guide }) => {
+const GuidanceCard = ({ guide, onReadMore }) => {
   return (
     <div className="guidance-card">
       <img src={guide.image} alt={guide.title} />
       <h3>{guide.title}</h3>
       <p>{guide.description}</p>
-      <button>Read More</button>
+      <button onClick={() => (onReadMore ? onReadMore(guide) : window.open(guide.link || "/guidance", "_self"))}>
+        Read More
+      </button>
     </div>
   );
 };

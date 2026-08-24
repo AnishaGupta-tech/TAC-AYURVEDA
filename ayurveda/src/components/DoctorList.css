@@ -10,8 +10,9 @@
 
 h2 {
   text-align: center;
-  color: #5d4037; /* Rich brown for the title */
-  font-size: 2rem;
+  color: var(--color-primary-dark); /* Rich brown for the title */
+  font-family: var(--font-display);
+  font-size: 2.25rem;
   margin-bottom: 20px;
 }
 
@@ -25,10 +26,10 @@ h2 {
 
 .filters input {
   padding: 10px;
-  border: 1px solid #d7ccc8; /* Light brown border */
+  border: 1px solid var(--color-border); /* Light brown border */
   border-radius: 5px;
   font-size: 1rem;
-  color: #5d4037; /* Rich brown text */
+  color: var(--color-primary-dark); /* Rich brown text */
   outline: none;
 }
 
@@ -45,34 +46,45 @@ h2 {
 }
 
 .card {
-  background-color: #f5f5f5; /* Light gray background */
-  border: 1px solid #d7ccc8; /* Light brown border */
-  border-radius: 10px;
-  padding: 20px;
+  background: linear-gradient(165deg, var(--color-surface) 0%, var(--color-bg-alt) 100%);
+  border: 1px solid var(--color-border); /* Light brown border */
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
   text-align: center;
+  box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
 .doctor-photo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
 .card h3 {
-  color: #5d4037; /* Rich brown for doctor name */
-  margin-bottom: 10px;
+  color: var(--color-primary-dark); /* Rich brown for doctor name */
+  font-family: var(--font-display);
+  margin-bottom: 8px;
 }
 
 .card p {
-  color: #6d4c41; /* Medium brown for details */
+  color: var(--color-text); /* Medium brown for details */
   margin: 5px 0;
+}
+
+.card .ayur-pill {
+  margin-bottom: 8px;
+}
+
+.doctor-location,
+.doctor-experience {
+  color: var(--color-text-muted) !important;
+  font-size: 0.9rem;
 }
 
 /* Buttons */
@@ -86,17 +98,17 @@ h2 {
 }
 
 .book-button {
-  background-color: #5d4037; /* Rich brown */
+  background-color: var(--color-primary-dark); /* Rich brown */
   color: #ffffff; /* White text */
 }
 
 .book-button:hover {
-  background-color: #4e342e; /* Darker brown on hover */
+  background-color: var(--color-primary-dark); /* Darker brown on hover */
 }
 
 .booked-button {
-  background-color: #d7ccc8; /* Light brown */
-  color: #5d4037; /* Rich brown text */
+  background-color: var(--color-border); /* Light brown */
+  color: var(--color-primary-dark); /* Rich brown text */
   cursor: not-allowed;
 }
 
@@ -122,7 +134,7 @@ h2 {
 }
 
 .popup-content h3 {
-  color: #5d4037; /* Rich brown for title */
+  color: var(--color-primary-dark); /* Rich brown for title */
   margin-bottom: 20px;
 }
 
@@ -130,10 +142,10 @@ h2 {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #d7ccc8; /* Light brown border */
+  border: 1px solid var(--color-border); /* Light brown border */
   border-radius: 5px;
   font-size: 1rem;
-  color: #5d4037; /* Rich brown text */
+  color: var(--color-primary-dark); /* Rich brown text */
   outline: none;
 }
 
@@ -153,17 +165,17 @@ h2 {
 }
 
 .popup-buttons button:first-child {
-  background-color: #5d4037; /* Rich brown */
+  background-color: var(--color-primary-dark); /* Rich brown */
   color: #ffffff; /* White text */
 }
 
 .popup-buttons button:first-child:hover {
-  background-color: #4e342e; /* Darker brown on hover */
+  background-color: var(--color-primary-dark); /* Darker brown on hover */
 }
 
 .popup-buttons button:last-child {
-  background-color: #d7ccc8; /* Light brown */
-  color: #5d4037; /* Rich brown text */
+  background-color: var(--color-border); /* Light brown */
+  color: var(--color-primary-dark); /* Rich brown text */
 }
 
 .popup-buttons button:last-child:hover {

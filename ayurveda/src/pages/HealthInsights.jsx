@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import '../styles.css';
+import PageBanner from '../components/PageBanner';
 
 const HealthInsights = () => {
   const [healthData, setHealthData] = useState(null);
@@ -75,7 +75,11 @@ const HealthInsights = () => {
 
   return (
     <div className="health-insights">
-      <Navbar />
+      <PageBanner
+        title="Health Insights"
+        subtitle="Track your vitals and see how they trend, alongside gentle Ayurvedic context."
+        image="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+      />
       <div className="health-insights-content">
         <h1>Health Insights</h1>
 

@@ -5,14 +5,14 @@ const FeatureCard = ({ title, description, link }) => {
   return (
     <div
       style={{
-        backgroundColor: '#fff',
+        backgroundColor: 'var(--color-surface)',
         borderRadius: '10px',
         padding: '20px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         transition: 'transform 0.3s, box-shadow 0.3s',
         cursor: 'pointer',
         textDecoration: 'none',
-        color: '#5d4037',
+        color: 'var(--color-primary)',
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',
@@ -22,7 +22,7 @@ const FeatureCard = ({ title, description, link }) => {
         style={{
           fontSize: '24px',
           margin: '0',
-          color: '#5d4037',
+          color: 'var(--color-primary)',
         }}
       >
         {title}
@@ -30,7 +30,7 @@ const FeatureCard = ({ title, description, link }) => {
       <p
         style={{
           fontSize: '16px',
-          color: '#666',
+          color: 'var(--color-text-muted)',
           margin: '0',
         }}
       >
@@ -42,8 +42,8 @@ const FeatureCard = ({ title, description, link }) => {
           padding: '10px 20px',
           borderRadius: '8px',
           border: 'none',
-          backgroundColor: '#5d4037',
-          color: '#fff',
+          backgroundColor: 'var(--color-primary)',
+          color: 'var(--color-surface)',
           fontSize: '16px',
           textAlign: 'center',
           textDecoration: 'none',

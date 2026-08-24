@@ -1,8 +1,6 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import FeatureCard from '../components/FeatureCard';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const Home = () => {
   const features = [
@@ -30,14 +28,13 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Navbar />
       <Banner />
+      <div className="ayur-divider" aria-hidden="true"></div>
       <div className="feature-grid">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}
       </div>
-      <Footer />
     </div>
   );
 };

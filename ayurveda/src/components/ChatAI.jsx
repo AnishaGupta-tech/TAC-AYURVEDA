@@ -81,28 +81,11 @@ const ChatAI = () => {
     }
   };
 
-  // Simulate bot typing delay
-  const simulateBotTyping = () => {
-    setIsBotTyping(true);
-    setTimeout(() => {
-      setIsBotTyping(false);
-    }, 1000); // 1-second typing delay
-  };
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
-
-    // Add user message to the chat
-    setMessages((prev) => [...prev, { text: input, sender: "user" }]);
-    setInput("");
-
-    // Simulate bot typing
-    simulateBotTyping();
-
-    // Convert the message to lowercase for case-insensitive matching
-    const lowerCaseMessage = input.toLowerCase();
-
-    // Check for custom responses
+  // Local fallback used only if the AI backend is unreachable
+  const getLocalReply = (message) => {
+    const lowerCaseMessage = message.toLowerCase();
     let botReply = "I’m here to help with Ayurveda and general health. Can you please elaborate on your query?";
     for (const item of customResponses) {
       for (const keyword of item.keywords) {
@@ -112,11 +95,37 @@ const ChatAI = () => {
         }
       }
     }
+    return botReply;
+  };
 
-    // Add bot response to the chat after typing delay
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { text: botReply, sender: "bot" }]);
-    }, 1000); // 1-second delay before bot responds
+  const handleSend = async () => {
+    if (!input.trim()) return;
+
+    const userMessage = input;
+    // Add user message to the chat
+    setMessages((prev) => [...prev, { text: userMessage, sender: "user" }]);
+    setInput("");
+
+    // Show typing indicator while we wait for the AI backend
+    setIsBotTyping(true);
+
+    let botReply;
+    try {
+      const response = await fetch(`${baseURL}/api/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
+      });
+      if (!response.ok) throw new Error("Chat request failed");
+      const data = await response.json();
+      botReply = data.message;
+    } catch (err) {
+      console.error("AI chat backend unavailable, using local fallback:", err);
+      botReply = getLocalReply(userMessage);
+    }
+
+    setIsBotTyping(false);
+    setMessages((prev) => [...prev, { text: botReply, sender: "bot" }]);
   };
 
   // Scroll to bottom whenever messages change
@@ -171,24 +180,24 @@ const styles = {
     maxWidth: "600px",
     margin: "0 auto",
     padding: "20px",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#FFFFFF", // White background
+    fontFamily: "var(--font-sans)",
+    backgroundColor: "var(--color-surface)", // White background
     borderRadius: "10px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   },
   heading: {
     textAlign: "center",
-    color: "#8B4513", // Brown color for heading
+    color: "var(--color-secondary-dark)", // Brown color for heading
     marginBottom: "20px",
   },
   chatWindow: {
     height: "400px",
     overflowY: "scroll",
-    border: "1px solid #8B4513", // Brown border
+    border: "1px solid var(--color-secondary-dark)", // Brown border
     borderRadius: "5px",
     padding: "10px",
     marginBottom: "10px",
-    backgroundColor: "#F5F5DC", // Beige background for chat window
+    backgroundColor: "var(--color-bg-alt)", // Beige background for chat window
     display: "flex",
     flexDirection: "column",
     gap: "10px",
@@ -201,18 +210,18 @@ const styles = {
   },
   userMessage: {
     alignSelf: "flex-end",
-    backgroundColor: "#8B4513", // Brown for user messages
-    color: "#FFFFFF", // White text for user messages
+    backgroundColor: "var(--color-secondary-dark)", // Brown for user messages
+    color: "var(--color-surface)", // White text for user messages
   },
   botMessage: {
     alignSelf: "flex-start",
-    backgroundColor: "#F5F5DC", // Beige for bot messages
-    color: "#000000", // Black text for bot messages
-    border: "1px solid #8B4513", // Brown border for bot messages
+    backgroundColor: "var(--color-bg-alt)", // Beige for bot messages
+    color: "var(--color-text)", // Black text for bot messages
+    border: "1px solid var(--color-secondary-dark)", // Brown border for bot messages
   },
   typingIndicator: {
     alignSelf: "flex-start",
-    color: "#8B4513", // Brown text
+    color: "var(--color-secondary-dark)", // Brown text
     fontStyle: "italic",
   },
   inputContainer: {
@@ -223,16 +232,16 @@ const styles = {
     flex: 1,
     padding: "10px",
     borderRadius: "5px",
-    border: "1px solid #8B4513", // Brown border
-    backgroundColor: "#FFFFFF", // White background
-    color: "#000000", // Black text
+    border: "1px solid var(--color-secondary-dark)", // Brown border
+    backgroundColor: "var(--color-surface)", // White background
+    color: "var(--color-text)", // Black text
   },
   button: {
     padding: "10px 20px",
     borderRadius: "5px",
     border: "none",
-    backgroundColor: "#8B4513", // Brown background
-    color: "#FFFFFF", // White text
+    backgroundColor: "var(--color-secondary-dark)", // Brown background
+    color: "var(--color-surface)", // White text
     cursor: "pointer",
   },
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import Banner from './Banner';
 import FeatureCard from './FeatureCard';
 
@@ -32,12 +31,11 @@ const AdvancedDiagnostics = () => {
     
     <div
       style={{
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'var(--color-bg)',
         minHeight: '100vh',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'var(--font-sans)',
       }}
     >
-      <Navbar />
       <Banner />
       <div
         style={{
@@ -49,7 +47,7 @@ const AdvancedDiagnostics = () => {
         <h1
           style={{
             textAlign: 'center',
-            color: '#5d4037',
+            color: 'var(--color-primary)',
             fontSize: '36px',
             marginBottom: '20px',
           }}
@@ -70,14 +68,14 @@ const AdvancedDiagnostics = () => {
               description={feature.description}
               link={feature.link}
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: 'var(--color-surface)',
                 borderRadius: '10px',
                 padding: '20px',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                 transition: 'transform 0.3s, box-shadow 0.3s',
                 cursor: 'pointer',
                 textDecoration: 'none',
-                color: '#5d4037',
+                color: 'var(--color-primary)',
               }}
             />
           ))}

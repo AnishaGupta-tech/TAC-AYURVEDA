@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PageBanner from "../components/PageBanner";
 
 const PrakritiAnalysis = () => {
   const [answers, setAnswers] = useState({});
@@ -51,22 +52,28 @@ const PrakritiAnalysis = () => {
   };
 
   return (
+    <div>
+      <PageBanner
+        title="Prakriti Analysis"
+        subtitle="Answer a short questionnaire to discover your unique Ayurvedic body type."
+        image="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1200&auto=format&fit=crop"
+      />
     <div
       style={{
         maxWidth: "600px",
         margin: "50px auto",
         padding: "20px",
-        backgroundColor: "#fff",
+        backgroundColor: "var(--color-surface)",
         borderRadius: "15px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        fontFamily: "Arial, sans-serif",
-        color: "#4a4a4a",
+        fontFamily: "var(--font-sans)",
+        color: "var(--color-text)",
       }}
     >
       <h2
         style={{
           textAlign: "center",
-          color: "#5d4037",
+          color: "var(--color-primary)",
           fontSize: "24px",
           marginBottom: "10px",
         }}
@@ -76,7 +83,7 @@ const PrakritiAnalysis = () => {
       <p
         style={{
           textAlign: "center",
-          color: "#666",
+          color: "var(--color-text-muted)",
           fontSize: "14px",
           marginBottom: "20px",
         }}
@@ -100,7 +107,7 @@ const PrakritiAnalysis = () => {
               gap: "10px",
             }}
           >
-            <p style={{ margin: "0", fontSize: "16px", color: "#5d4037" }}>{question.text}</p>
+            <p style={{ margin: "0", fontSize: "16px", color: "var(--color-primary)" }}>{question.text}</p>
             <div
               style={{
                 display: "flex",
@@ -114,8 +121,8 @@ const PrakritiAnalysis = () => {
                   padding: "8px 16px",
                   borderRadius: "8px",
                   border: "none",
-                  backgroundColor: answers[index] === "Yes" ? "#5d4037" : "#eee",
-                  color: answers[index] === "Yes" ? "#fff" : "#333",
+                  backgroundColor: answers[index] === "Yes" ? "var(--color-primary)" : "var(--color-border)",
+                  color: answers[index] === "Yes" ? "var(--color-surface)" : "var(--color-text)",
                   fontSize: "14px",
                   cursor: "pointer",
                   transition: "background-color 0.3s",
@@ -130,8 +137,8 @@ const PrakritiAnalysis = () => {
                   padding: "8px 16px",
                   borderRadius: "8px",
                   border: "none",
-                  backgroundColor: answers[index] === "No" ? "#5d4037" : "#eee",
-                  color: answers[index] === "No" ? "#fff" : "#333",
+                  backgroundColor: answers[index] === "No" ? "var(--color-primary)" : "var(--color-border)",
+                  color: answers[index] === "No" ? "var(--color-surface)" : "var(--color-text)",
                   fontSize: "14px",
                   cursor: "pointer",
                   transition: "background-color 0.3s",
@@ -148,15 +155,15 @@ const PrakritiAnalysis = () => {
             padding: "10px 20px",
             borderRadius: "8px",
             border: "none",
-            backgroundColor: "#5d4037",
-            color: "#fff",
+            backgroundColor: "var(--color-primary)",
+            color: "var(--color-surface)",
             fontSize: "16px",
             cursor: "pointer",
             transition: "background-color 0.3s",
             marginTop: "10px",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4e342e")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5d4037")}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary-dark)")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary)")}
         >
           Analyze
         </button>
@@ -166,17 +173,18 @@ const PrakritiAnalysis = () => {
           style={{
             marginTop: "20px",
             padding: "15px",
-            backgroundColor: "#f5f5dc",
+            backgroundColor: "var(--color-bg-alt)",
             borderRadius: "8px",
-            border: "1px solid #d7ccc8",
+            border: "1px solid var(--color-border)",
           }}
         >
-          <h3 style={{ color: "#5d4037", fontSize: "18px", marginBottom: "10px" }}>
+          <h3 style={{ color: "var(--color-primary)", fontSize: "18px", marginBottom: "10px" }}>
             Your Prakriti Analysis:
           </h3>
-          <p style={{ color: "#5d4037", margin: "0" }}>{prakritiType}</p>
+          <p style={{ color: "var(--color-primary)", margin: "0" }}>{prakritiType}</p>
         </div>
       )}
+    </div>
     </div>
   );
 };

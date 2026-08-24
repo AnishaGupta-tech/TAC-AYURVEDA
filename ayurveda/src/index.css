@@ -1,11 +1,45 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Ayurvedic design tokens */
+  --color-primary: #2f5233;       /* deep forest green */
+  --color-primary-dark: #1f3a24;
+  --color-primary-light: #4a7c52;
+  --color-secondary: #c9762c;     /* terracotta/amber */
+  --color-secondary-dark: #a85f1f;
+  --color-secondary-light: #e0954f;
+  --color-bg: #faf6ef;            /* warm cream */
+  --color-bg-alt: #f2ead9;
+  --color-surface: #ffffff;
+  --color-text: #2b2520;
+  --color-text-muted: #6b5f52;
+  --color-border: #e4d9c4;
+  --color-success: #3f7d4f;
+  --color-danger: #b3432b;
+
+  --font-sans: 'Poppins', system-ui, -apple-system, Avenir, Helvetica, Arial, sans-serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 3px rgba(43, 37, 32, 0.08);
+  --shadow-md: 0 4px 16px rgba(43, 37, 32, 0.10);
+  --shadow-lg: 0 10px 30px rgba(43, 37, 32, 0.14);
+
+  font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,56 +47,187 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-dark);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.75rem;
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: var(--color-text);
+}
+
 button {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.7em 1.6em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary);
+  color: #ffffff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid var(--color-secondary-light);
+  outline-offset: 2px;
+}
+button:disabled {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.btn-secondary:hover {
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary-dark);
+}
+
+.btn-accent {
+  background-color: var(--color-secondary);
+}
+.btn-accent:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------- */
+/* Ayurvedic visual identity: motifs, dividers, pills, photo rings   */
+/* ---------------------------------------------------------------- */
+
+/* Subtle lotus corner motif — apply as a background accent on sections */
+.ayur-motif {
+  position: relative;
+  overflow: hidden;
+}
+.ayur-motif::before,
+.ayur-motif::after {
+  content: '';
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%232f5233' stroke-width='2'%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(45 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(90 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(135 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(180 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(225 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(270 100 100)'/%3E%3Cpath d='M100 20c15 25 15 55 0 80 -15-25-15-55 0-80z' transform='rotate(315 100 100)'/%3E%3Ccircle cx='100' cy='100' r='14'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ayur-motif::before {
+  top: -60px;
+  left: -60px;
+}
+.ayur-motif::after {
+  bottom: -60px;
+  right: -60px;
+  transform: rotate(25deg);
+}
+.ayur-motif > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Leaf-shaped section divider (place as an empty <div> between sections) */
+.ayur-divider {
+  width: 100%;
+  height: 44px;
+  background-color: var(--color-bg);
+  background-repeat: repeat-x;
+  background-size: 90px 44px;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='44' viewBox='0 0 90 44'%3E%3Cpath d='M0 0 C 20 40, 70 40, 90 0 L90 44 L0 44 Z' fill='%23c9762c' fill-opacity='0.12'/%3E%3Cpath d='M0 6 C 20 40, 70 40, 90 6' fill='none' stroke='%232f5233' stroke-opacity='0.25' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+/* Small pill / badge, e.g. for specializations */
+.ayur-pill {
+  display: inline-block;
+  padding: 0.3em 0.85em;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: linear-gradient(135deg, rgba(47, 82, 51, 0.12), rgba(201, 118, 44, 0.14));
+  border: 1px solid var(--color-border);
+  letter-spacing: 0.01em;
+}
+
+/* Gradient-ring circular photo treatment, e.g. for doctor portraits */
+.ayur-photo-ring {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  box-shadow: var(--shadow-sm);
+}
+.ayur-photo-ring img {
+  display: block;
+  border-radius: 50%;
+  border: 3px solid var(--color-surface);
+  object-fit: cover;
 }

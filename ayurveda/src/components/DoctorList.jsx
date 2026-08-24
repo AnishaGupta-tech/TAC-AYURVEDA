@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
+import { useAuth } from './AuthGate';
 import './DoctorList.css';
 
 const DoctorList = () => {
@@ -7,6 +10,9 @@ const DoctorList = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({ name: '', date: '', time: '' });
   const [filters, setFilters] = useState({ specialization: '', disease: '' });
+  const [bookingError, setBookingError] = useState('');
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   // Get base URL from environment variable
   const baseURL = import.meta.env.VITE_API_BASE_URL;
@@ -20,6 +26,11 @@ const DoctorList = () => {
 
   // Handle booking appointment
   const handleBookAppointment = (doctor) => {
+    if (!user) {
+      navigate('/authpage', { state: { redirectReason: 'Sign in to book a consultation.' } });
+      return;
+    }
+    setBookingError('');
     setSelectedDoctor(doctor);
   };
 
@@ -29,15 +40,37 @@ const DoctorList = () => {
       alert('Please fill all fields');
       return;
     }
+    if (!user) {
+      navigate('/authpage', { state: { redirectReason: 'Sign in to book a consultation.' } });
+      return;
+    }
+
+    setBookingError('');
 
     try {
-      // Send booking request to the backend
-      const response = await axios.post(`${baseURL}/api/appointments`, {
+      // Send booking request to the backend (marks the demo doctor as booked)
+      await axios.post(`${baseURL}/api/appointments`, {
         doctorId: selectedDoctor.id,
-        userId: 'user123', // Replace with actual user ID
+        userId: user.id,
         date: bookingDetails.date,
         slot: bookingDetails.time,
       });
+
+      // Also persist the appointment against the real account so it shows on Profile
+      const { error: supabaseError } = await supabase.from('appointments').insert({
+        user_id: user.id,
+        doctor_id: selectedDoctor.id,
+        doctor_name: selectedDoctor.name,
+        specialization: selectedDoctor.specialization,
+        appointment_date: bookingDetails.date,
+        appointment_slot: bookingDetails.time,
+      });
+
+      if (supabaseError) {
+        console.error('Error saving appointment to account:', supabaseError);
+        setBookingError('Booked, but we could not save this to your profile: ' + supabaseError.message);
+        return;
+      }
 
       // Update the doctor's status to "booked"
       const updatedDoctors = doctors.map((doctor) =>
@@ -57,8 +90,8 @@ const DoctorList = () => {
   };
 
   return (
-    <div className="doctor-list">
-      <h2>Available Doctors</h2>
+    <div className="doctor-list ayur-motif">
+      <h2>🪷 Available Doctors</h2>
 
       {/* Filter Section */}
       <div className="filters">
@@ -90,15 +123,21 @@ const DoctorList = () => {
           })
           .map((doctor) => (
             <div key={doctor.id} className="card">
-              <img src={doctor.photo} alt={doctor.name} className="doctor-photo" />
+              <div className="ayur-photo-ring">
+                <img src={doctor.photo} alt={doctor.name} className="doctor-photo" />
+              </div>
               <h3>{doctor.name}</h3>
-              <p><strong>Specialization:</strong> {doctor.specialization}</p>
+              <span className="ayur-pill">🌿 {doctor.specialization}</span>
+              {doctor.location && <p className="doctor-location">📍 {doctor.location}</p>}
+              {doctor.experienceYears && (
+                <p className="doctor-experience">{doctor.experienceYears}+ years experience</p>
+              )}
               <p><strong>Availability:</strong> {doctor.availability[0].date} - {doctor.availability[0].slots.join(', ')}</p>
               {doctor.booked ? (
                 <button disabled className="booked-button">Booked</button>
               ) : (
                 <button onClick={() => handleBookAppointment(doctor)} className="book-button">
-                  Book Appointment
+                  Consult Vaidya
                 </button>
               )}
             </div>
@@ -126,8 +165,9 @@ const DoctorList = () => {
               value={bookingDetails.time}
               onChange={(e) => setBookingDetails({ ...bookingDetails, time: e.target.value })}
             />
+            {bookingError && <p style={{ color: '#c0392b', fontSize: '0.85rem' }}>{bookingError}</p>}
             <button onClick={handleConfirmBooking}>Confirm Booking</button>
-            <button onClick={() => setSelectedDoctor(null)}>Cancel</button>
+            <button onClick={() => { setSelectedDoctor(null); setBookingError(''); }}>Cancel</button>
           </div>
         </div>
       )}

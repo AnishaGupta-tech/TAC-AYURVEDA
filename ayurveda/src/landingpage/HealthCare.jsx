@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HealthCare = () => {
+  const navigate = useNavigate();
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", backgroundColor: "#F5F5DC" }}>
+    <div style={{ fontFamily: "var(--font-sans)", backgroundColor: "var(--color-bg-alt)" }}>
       {/* Why Choose Us Section */}
       <section style={{ padding: "3rem 1rem" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1rem" }}>
@@ -10,8 +12,8 @@ const HealthCare = () => {
             <span
               style={{
                 display: "inline-block",
-                backgroundColor: "#F5DEB3",
-                color: "#8B4513",
+                backgroundColor: "var(--color-bg-alt)",
+                color: "var(--color-secondary-dark)",
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
                 fontSize: "0.875rem",
@@ -20,9 +22,31 @@ const HealthCare = () => {
               Why choose us
             </span>
             <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginTop: "1rem" }}>
-              Why Pick Us for{" "}
-              <span style={{ color: "#8B4513" }}>Your Health Care</span>
+              Find Out The{" "}
+              <span style={{ color: "var(--color-secondary-dark)" }}>Root Cause</span>
             </h2>
+            <p style={{ color: "var(--color-text-muted)", maxWidth: "560px", margin: "1rem auto 0" }}>
+              Our certified Vaidyas look beyond symptoms to understand your unique constitution
+              and recommend a personalized path to lasting wellness.
+            </p>
+            <button
+              onClick={() => navigate("/doctor-consultation")}
+              style={{
+                marginTop: "1.5rem",
+                backgroundColor: "var(--color-secondary-dark)",
+                color: "var(--color-surface)",
+                padding: "0.75rem 1.75rem",
+                borderRadius: "9999px",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "0.9rem",
+                fontWeight: 700,
+                letterSpacing: "0.03em",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              CONSULT VAIDYA
+            </button>
           </div>
           <div
             style={{
@@ -67,7 +91,7 @@ const HealthCare = () => {
                   <div
                     key={index}
                     style={{
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: "var(--color-surface)",
                       borderRadius: "10px",
                       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                       padding: "1.5rem",
@@ -76,8 +100,8 @@ const HealthCare = () => {
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
                       <div
                         style={{
-                          backgroundColor: "#8B4513",
-                          color: "#FFFFFF",
+                          backgroundColor: "var(--color-secondary-dark)",
+                          color: "var(--color-surface)",
                           borderRadius: "9999px",
                           padding: "0.75rem",
                         }}
@@ -88,7 +112,7 @@ const HealthCare = () => {
                         {service.title}
                       </h3>
                     </div>
-                    <p style={{ color: "#4B5563" }}>{service.description}</p>
+                    <p style={{ color: "var(--color-text-muted)" }}>{service.description}</p>
                   </div>
                 ))}
               </div>
@@ -113,14 +137,14 @@ const HealthCare = () => {
       </section>
 
       {/* Meet Our Team Section */}
-      <section style={{ padding: "3rem 1rem", backgroundColor: "#FFFFFF" }}>
+      <section style={{ padding: "3rem 1rem", backgroundColor: "var(--color-surface)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1rem" }}>
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <span
               style={{
                 display: "inline-block",
-                backgroundColor: "#F5DEB3",
-                color: "#8B4513",
+                backgroundColor: "var(--color-bg-alt)",
+                color: "var(--color-secondary-dark)",
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
                 fontSize: "0.875rem",
@@ -130,7 +154,7 @@ const HealthCare = () => {
             </span>
             <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginTop: "1rem" }}>
               Experienced and{" "}
-              <span style={{ color: "#8B4513" }}>Skilled Team</span> of Experts
+              <span style={{ color: "var(--color-secondary-dark)" }}>Skilled Team</span> of Experts
             </h2>
           </div>
           <div style={{ overflowX: "auto" }}>
@@ -157,7 +181,7 @@ const HealthCare = () => {
                   role: "Trusted Ayurvedic Consultant",
                 },
                 {
-                  image: "https://storage.googleapis.com/a1aa/image/ayurvedic-doctor-5.jpg",
+                  image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=800&auto=format&fit=crop",
                   name: "Dr. Sarah Johnson",
                   role: "Expert Ayurvedic Nutritionist",
                 },
@@ -187,7 +211,7 @@ const HealthCare = () => {
                 >
                   <div
                     style={{
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: "var(--color-surface)",
                       borderRadius: "10px",
                       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                       padding: "1.5rem",
@@ -208,7 +232,7 @@ const HealthCare = () => {
                       }}
                     />
                     <h3 style={{ fontSize: "1.25rem", fontWeight: "600" }}>{doctor.name}</h3>
-                    <p style={{ color: "#4B5563", marginTop: "0.5rem" }}>{doctor.role}</p>
+                    <p style={{ color: "var(--color-text-muted)", marginTop: "0.5rem" }}>{doctor.role}</p>
                   </div>
                 </div>
               ))}

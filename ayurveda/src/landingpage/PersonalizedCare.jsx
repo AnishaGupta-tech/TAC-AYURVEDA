@@ -1,12 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const PersonalizedCare = () => {
+  const navigate = useNavigate();
   return (
     <div
       style={{
-        fontFamily: "'Roboto', sans-serif",
-        backgroundColor: "#FFFFFF",
-        color: "#1F2937",
+        fontFamily: "var(--font-sans)",
+        backgroundColor: "var(--color-surface)",
+        color: "var(--color-text)",
         padding: "2rem 0",
       }}
     >
@@ -49,9 +51,10 @@ const PersonalizedCare = () => {
             }}
           >
             <button
+              onClick={() => window.open("https://theayurvedaco.com/pages/about-us", "_blank", "noopener,noreferrer")}
               style={{
-                backgroundColor: "#FFFFFF",
-                color: "#8B4513",
+                backgroundColor: "var(--color-surface)",
+                color: "var(--color-secondary-dark)",
                 borderRadius: "9999px",
                 padding: "0.75rem",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -77,8 +80,8 @@ const PersonalizedCare = () => {
           <div>
             <span
               style={{
-                backgroundColor: "#F5DEB3",
-                color: "#8B4513",
+                backgroundColor: "var(--color-bg-alt)",
+                color: "var(--color-secondary-dark)",
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
                 fontSize: "0.875rem",
@@ -94,11 +97,11 @@ const PersonalizedCare = () => {
               lineHeight: "1.2",
             }}
           >
-            <span style={{ color: "#1F2937" }}>Personalized,</span>{" "}
-            <span style={{ color: "#8B4513" }}>Exceptional</span>{" "}
-            <span style={{ color: "#1F2937" }}>Care</span>
+            <span style={{ color: "var(--color-text)" }}>Personalized,</span>{" "}
+            <span style={{ color: "var(--color-secondary-dark)" }}>Exceptional</span>{" "}
+            <span style={{ color: "var(--color-text)" }}>Care</span>
           </h1>
-          <p style={{ color: "#4B5563" }}>
+          <p style={{ color: "var(--color-text-muted)" }}>
             Providing the Highest Quality of Care and Comfort, Created Especially for Your Health,
             Safety, and Peace of Mind
           </p>
@@ -114,8 +117,8 @@ const PersonalizedCare = () => {
             <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
               <div
                 style={{
-                  backgroundColor: "#F5DEB3",
-                  color: "#8B4513",
+                  backgroundColor: "var(--color-bg-alt)",
+                  color: "var(--color-secondary-dark)",
                   padding: "0.75rem",
                   borderRadius: "9999px",
                 }}
@@ -123,10 +126,10 @@ const PersonalizedCare = () => {
                 <i className="fas fa-flask" style={{ fontSize: "1.25rem" }}></i>
               </div>
               <div>
-                <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1F2937" }}>
+                <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "var(--color-text)" }}>
                   Research and Development
                 </h3>
-                <p style={{ color: "#4B5563" }}>
+                <p style={{ color: "var(--color-text-muted)" }}>
                   At TAC Ayurveda, our R&D team drives innovation to improve health and
                   well-being through traditional and modern ayurvedic solutions.
                 </p>
@@ -136,8 +139,8 @@ const PersonalizedCare = () => {
             <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
               <div
                 style={{
-                  backgroundColor: "#F5DEB3",
-                  color: "#8B4513",
+                  backgroundColor: "var(--color-bg-alt)",
+                  color: "var(--color-secondary-dark)",
                   padding: "0.75rem",
                   borderRadius: "9999px",
                 }}
@@ -145,10 +148,10 @@ const PersonalizedCare = () => {
                 <i className="fas fa-leaf" style={{ fontSize: "1.25rem" }}></i> {/* Changed icon */}
               </div>
               <div>
-                <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "#1F2937" }}>
+                <h3 style={{ fontSize: "1.125rem", fontWeight: "600", color: "var(--color-text)" }}>
                   Natural Healing Therapies
                 </h3>
-                <p style={{ color: "#4B5563" }}>
+                <p style={{ color: "var(--color-text-muted)" }}>
                   Utilizing traditional ayurvedic therapies and natural remedies to ensure holistic
                   healing and wellness tailored to individual needs.
                 </p>
@@ -158,9 +161,10 @@ const PersonalizedCare = () => {
 
           {/* Button */}
           <button
+            onClick={() => navigate("/guidance")}
             style={{
-              backgroundColor: "#8B4513",
-              color: "#FFFFFF",
+              backgroundColor: "var(--color-secondary-dark)",
+              color: "var(--color-surface)",
               padding: "0.75rem 1.5rem",
               borderRadius: "9999px",
               border: "none",

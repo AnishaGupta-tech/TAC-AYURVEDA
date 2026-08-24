@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PageBanner from "../components/PageBanner";
 
 const SymptomChecker = () => {
   const [formData, setFormData] = useState({
@@ -89,22 +90,28 @@ const SymptomChecker = () => {
   };
 
   return (
+    <div>
+      <PageBanner
+        title="Ayurvedic Symptom Checker"
+        subtitle="Describe what you're feeling to get Ayurvedic advice, product suggestions, and dosha insights."
+        image="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?q=80&w=1200&auto=format&fit=crop"
+      />
     <div
       style={{
         maxWidth: "600px",
         margin: "50px auto",
         padding: "20px",
-        backgroundColor: "#fff",
+        backgroundColor: "var(--color-surface)",
         borderRadius: "15px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        fontFamily: "Arial, sans-serif",
-        color: "#4a4a4a",
+        fontFamily: "var(--font-sans)",
+        color: "var(--color-text)",
       }}
     >
       <h2
         style={{
           textAlign: "center",
-          color: "#5d4037",
+          color: "var(--color-primary)",
           fontSize: "24px",
           marginBottom: "10px",
         }}
@@ -114,7 +121,7 @@ const SymptomChecker = () => {
       <p
         style={{
           textAlign: "center",
-          color: "#666",
+          color: "var(--color-text-muted)",
           fontSize: "14px",
           marginBottom: "20px",
         }}
@@ -138,7 +145,7 @@ const SymptomChecker = () => {
           style={{
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
           }}
@@ -152,7 +159,7 @@ const SymptomChecker = () => {
           style={{
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
           }}
@@ -164,7 +171,7 @@ const SymptomChecker = () => {
           style={{
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
           }}
@@ -182,7 +189,7 @@ const SymptomChecker = () => {
           style={{
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
             minHeight: "100px",
@@ -198,7 +205,7 @@ const SymptomChecker = () => {
           style={{
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
           }}
@@ -209,14 +216,14 @@ const SymptomChecker = () => {
             padding: "10px 20px",
             borderRadius: "8px",
             border: "none",
-            backgroundColor: "#5d4037",
-            color: "#fff",
+            backgroundColor: "var(--color-primary)",
+            color: "var(--color-surface)",
             fontSize: "16px",
             cursor: "pointer",
             transition: "background-color 0.3s",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4e342e")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5d4037")}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary-dark)")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary)")}
         >
           Submit
         </button>
@@ -226,15 +233,15 @@ const SymptomChecker = () => {
           style={{
             marginTop: "20px",
             padding: "15px",
-            backgroundColor: "#f5f5dc",
+            backgroundColor: "var(--color-bg-alt)",
             borderRadius: "8px",
-            border: "1px solid #d7ccc8",
+            border: "1px solid var(--color-border)",
           }}
         >
-          <h3 style={{ color: "#5d4037", fontSize: "18px", marginBottom: "10px" }}>
+          <h3 style={{ color: "var(--color-primary)", fontSize: "18px", marginBottom: "10px" }}>
             Ayurvedic Advice:
           </h3>
-          <p style={{ color: "#5d4037", margin: "0" }}>{analysis}</p>
+          <p style={{ color: "var(--color-primary)", margin: "0" }}>{analysis}</p>
         </div>
       )}
       {recommendations.length > 0 && (
@@ -242,15 +249,15 @@ const SymptomChecker = () => {
           style={{
             marginTop: "20px",
             padding: "15px",
-            backgroundColor: "#f5f5dc",
+            backgroundColor: "var(--color-bg-alt)",
             borderRadius: "8px",
-            border: "1px solid #d7ccc8",
+            border: "1px solid var(--color-border)",
           }}
         >
-          <h3 style={{ color: "#5d4037", fontSize: "18px", marginBottom: "10px" }}>
+          <h3 style={{ color: "var(--color-primary)", fontSize: "18px", marginBottom: "10px" }}>
             Recommended Products:
           </h3>
-          <ul style={{ color: "#5d4037", paddingLeft: "20px", margin: "0" }}>
+          <ul style={{ color: "var(--color-primary)", paddingLeft: "20px", margin: "0" }}>
             {recommendations.map((product, index) => (
               <li key={index}>{product}</li>
             ))}
@@ -262,17 +269,18 @@ const SymptomChecker = () => {
           style={{
             marginTop: "20px",
             padding: "15px",
-            backgroundColor: "#f5f5dc",
+            backgroundColor: "var(--color-bg-alt)",
             borderRadius: "8px",
-            border: "1px solid #d7ccc8",
+            border: "1px solid var(--color-border)",
           }}
         >
-          <h3 style={{ color: "#5d4037", fontSize: "18px", marginBottom: "10px" }}>
+          <h3 style={{ color: "var(--color-primary)", fontSize: "18px", marginBottom: "10px" }}>
             Ayurvedic Insights:
           </h3>
-          <p style={{ color: "#5d4037", margin: "0" }}>{ayurvedicInsights}</p>
+          <p style={{ color: "var(--color-primary)", margin: "0" }}>{ayurvedicInsights}</p>
         </div>
       )}
+    </div>
     </div>
   );
 };

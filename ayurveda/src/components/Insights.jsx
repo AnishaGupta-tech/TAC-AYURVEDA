@@ -99,13 +99,13 @@ const Insights = () => {
       maxWidth: "1200px",
       margin: "0 auto",
       padding: "20px",
-      backgroundColor: "#ffffff", // White background
+      backgroundColor: "var(--color-surface)", // White background
       borderRadius: "10px",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     },
     heading: {
       textAlign: "center",
-      color: "#5d4037", // Rich brown
+      color: "var(--color-primary)", // Rich brown
       fontSize: "2.5rem",
       marginBottom: "30px",
       fontWeight: "600",
@@ -117,8 +117,8 @@ const Insights = () => {
       marginBottom: "40px",
     },
     card: {
-      backgroundColor: "#f5f5dc", // Beige background
-      border: "1px solid #d7ccc8", // Light brown border
+      backgroundColor: "var(--color-bg-alt)", // Beige background
+      border: "1px solid var(--color-border)", // Light brown border
       borderRadius: "10px",
       padding: "20px",
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -128,30 +128,30 @@ const Insights = () => {
       boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)",
     },
     title: {
-      color: "#5d4037", // Rich brown
+      color: "var(--color-primary)", // Rich brown
       fontSize: "1.5rem",
       marginBottom: "10px",
       fontWeight: "600",
     },
     description: {
-      color: "#6d4c41", // Medium brown
+      color: "var(--color-primary-light)", // Medium brown
       fontSize: "1rem",
       lineHeight: "1.6",
     },
     recommendationSection: {
-      backgroundColor: "#f5f5dc", // Beige background
-      border: "1px solid #d7ccc8", // Light brown border
+      backgroundColor: "var(--color-bg-alt)", // Beige background
+      border: "1px solid var(--color-border)", // Light brown border
       borderRadius: "10px",
       padding: "20px",
       textAlign: "center",
     },
     recommendationHeading: {
-      color: "#5d4037", // Rich brown
+      color: "var(--color-primary)", // Rich brown
       fontSize: "2rem",
       marginBottom: "10px",
     },
     recommendationSubtext: {
-      color: "#6d4c41", // Medium brown
+      color: "var(--color-primary-light)", // Medium brown
       fontSize: "1rem",
       marginBottom: "20px",
     },
@@ -163,7 +163,7 @@ const Insights = () => {
     },
     input: {
       padding: "10px",
-      border: "1px solid #d7ccc8", // Light brown border
+      border: "1px solid var(--color-border)", // Light brown border
       borderRadius: "5px",
       width: "300px",
       fontSize: "1rem",
@@ -172,17 +172,17 @@ const Insights = () => {
       padding: "10px 20px",
       border: "none",
       borderRadius: "5px",
-      backgroundColor: "#5d4037", // Rich brown
-      color: "#ffffff", // White text
+      backgroundColor: "var(--color-primary)", // Rich brown
+      color: "var(--color-surface)", // White text
       fontSize: "1rem",
       cursor: "pointer",
     },
     buttonHover: {
-      backgroundColor: "#4e342e", // Darker brown
+      backgroundColor: "var(--color-primary-dark)", // Darker brown
     },
     recommendationResults: {
       textAlign: "left",
-      color: "#5d4037", // Rich brown
+      color: "var(--color-primary)", // Rich brown
     },
     resultsHeading: {
       fontSize: "1.5rem",
@@ -234,8 +234,8 @@ const Insights = () => {
           <button
             onClick={handleRecommendations}
             style={styles.button}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#4e342e")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#5d4037")}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary-dark)")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary)")}
           >
             Get Recommendations
           </button>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PageBanner from "../components/PageBanner";
 
 const AIAssistant = () => {
   const [userInput, setUserInput] = useState("");
@@ -66,16 +67,14 @@ const AIAssistant = () => {
     },
   ];
 
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
   };
 
-  const simulateAIResponse = async (input) => {
-    // Simulate a delay for real-time typing effect
-    setIsTyping(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call delay
-
-    // Find a matching response based on keywords
+  // Local keyword-based fallback used only if the AI backend is unreachable
+  const getLocalResponse = (input) => {
     const lowerCaseInput = input.toLowerCase();
     let response =
       "I’m here to help with Ayurveda and general health. Can you please elaborate on your query?";
@@ -90,34 +89,57 @@ const AIAssistant = () => {
     return response;
   };
 
+  const fetchAIResponse = async (input) => {
+    setIsTyping(true);
+    try {
+      const res = await fetch(`${baseURL}/api/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
+      if (!res.ok) throw new Error("Chat request failed");
+      const data = await res.json();
+      return data.message;
+    } catch (err) {
+      console.error("AI chat backend unavailable, using local fallback:", err);
+      return getLocalResponse(input);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userInput.trim()) return;
 
-    const response = await simulateAIResponse(userInput);
+    const response = await fetchAIResponse(userInput);
     setAIResponse(response);
     setIsTyping(false);
     setUserInput("");
   };
 
   return (
+    <div>
+      <PageBanner
+        title="Ayurvedic AI Assistant"
+        subtitle="Chat with an AI guide trained on Ayurvedic wellness principles — diet, doshas, herbs, and lifestyle."
+        image="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop"
+      />
     <div
       style={{
         maxWidth: "600px",
         margin: "50px auto",
         padding: "20px",
-        backgroundColor: "#fff",
+        backgroundColor: "var(--color-surface)",
         borderRadius: "15px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        fontFamily: "Arial, sans-serif",
-        color: "#4a4a4a",
+        fontFamily: "var(--font-sans)",
+        color: "var(--color-text)",
       }}
     >
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <h2 style={{ color: "#5d4037", fontSize: "24px", margin: "0" }}>
+        <h2 style={{ color: "var(--color-primary)", fontSize: "24px", margin: "0" }}>
           🌿 Ayurvedic AI Assistant
         </h2>
-        <p style={{ color: "#666", fontSize: "14px", margin: "5px 0 0" }}>
+        <p style={{ color: "var(--color-text-muted)", fontSize: "14px", margin: "5px 0 0" }}>
           Ask me anything about your health, doshas, or lifestyle.
         </p>
       </div>
@@ -135,7 +157,7 @@ const AIAssistant = () => {
             flex: 1,
             padding: "10px",
             borderRadius: "8px",
-            border: "1px solid #ddd",
+            border: "1px solid var(--color-border)",
             fontSize: "16px",
             outline: "none",
           }}
@@ -147,8 +169,8 @@ const AIAssistant = () => {
             padding: "10px 20px",
             borderRadius: "8px",
             border: "none",
-            backgroundColor: "#5d4037",
-            color: "#fff",
+            backgroundColor: "var(--color-primary)",
+            color: "var(--color-surface)",
             fontSize: "16px",
             cursor: "pointer",
             transition: "background-color 0.3s",
@@ -160,18 +182,19 @@ const AIAssistant = () => {
       <div
         style={{
           padding: "15px",
-          backgroundColor: "#f5f5dc",
+          backgroundColor: "var(--color-bg-alt)",
           borderRadius: "8px",
-          border: "1px solid #d7ccc8",
+          border: "1px solid var(--color-border)",
           minHeight: "50px",
         }}
       >
         {isTyping ? (
-          <p style={{ color: "#666", fontStyle: "italic" }}>Typing...</p>
+          <p style={{ color: "var(--color-text-muted)", fontStyle: "italic" }}>Typing...</p>
         ) : (
-          <p style={{ color: "#5d4037", margin: "0" }}>{aiResponse}</p>
+          <p style={{ color: "var(--color-primary)", margin: "0" }}>{aiResponse}</p>
         )}
       </div>
+    </div>
     </div>
   );
 };
