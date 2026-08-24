@@ -12,6 +12,11 @@ app.use(cors());
 // Middleware to parse JSON
 app.use(bodyParser.json());
 
+// Health check — used by Railway to confirm the app is alive
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'AyurSphere backend' });
+});
+
 // Initialize Groq (OpenAI-compatible API)
 const openai = new OpenAI({
   apiKey: process.env.GROQ_API_KEY,

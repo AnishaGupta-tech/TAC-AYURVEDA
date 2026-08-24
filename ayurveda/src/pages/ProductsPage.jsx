@@ -176,7 +176,7 @@ const ProductPage = () => {
 
       {/* Banner */}
       <div className="shop-banner">
-        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop" alt="Ayurveda Wellness Banner" />
+        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=1600&auto=format&fit=crop" alt="Ayurvedic herbs and wellness products" />
       </div>
 
       <div className="section-heading">

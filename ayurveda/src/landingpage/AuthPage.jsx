@@ -14,6 +14,7 @@ const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -54,15 +55,23 @@ const AuthPage = () => {
           password: formData.password,
         });
         if (error) throw error;
+        navigate("/");
       } else {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email: formData.email,
           password: formData.password,
           options: { data: { full_name: formData.name } },
         });
         if (error) throw error;
+
+        if (data.session) {
+          // Email confirmation is disabled on this project — already signed in.
+          navigate("/");
+        } else {
+          // Email confirmation required — nothing to log in to yet, tell the user what's next.
+          setConfirmationSent(true);
+        }
       }
-      navigate("/");
     } catch (err) {
       setErrors({ form: err.message || "Something went wrong. Please try again." });
     } finally {
@@ -94,29 +103,50 @@ const AuthPage = () => {
 
       <div style={styles.formSide}>
         <div style={styles.card}>
-          <div style={styles.tabs}>
-            <button
-              type="button"
-              style={isLogin ? styles.tabActive : styles.tab}
-              onClick={() => setIsLogin(true)}
-            >
-              Sign In
-            </button>
-            <button
-              type="button"
-              style={!isLogin ? styles.tabActive : styles.tab}
-              onClick={() => setIsLogin(false)}
-            >
-              Create Account
-            </button>
-          </div>
+          {confirmationSent ? (
+            <div style={styles.confirmationBox}>
+              <div style={{ fontSize: "2.75rem" }}>📧</div>
+              <h2 style={styles.header}>Check your inbox</h2>
+              <p style={styles.subheader}>
+                We've sent a confirmation link to <strong>{formData.email}</strong>. Click it to
+                activate your account — once confirmed, come back here and sign in.
+              </p>
+              <button
+                type="button"
+                style={styles.button}
+                onClick={() => {
+                  setConfirmationSent(false);
+                  setIsLogin(true);
+                }}
+              >
+                Back to Sign In
+              </button>
+            </div>
+          ) : (
+            <>
+              <div style={styles.tabs}>
+                <button
+                  type="button"
+                  style={isLogin ? styles.tabActive : styles.tab}
+                  onClick={() => setIsLogin(true)}
+                >
+                  Sign In
+                </button>
+                <button
+                  type="button"
+                  style={!isLogin ? styles.tabActive : styles.tab}
+                  onClick={() => setIsLogin(false)}
+                >
+                  Create Account
+                </button>
+              </div>
 
-          <h2 style={styles.header}>{isLogin ? "Welcome back" : "Join AyurSphere"}</h2>
-          <p style={styles.subheader}>
-            {isLogin
-              ? "Sign in to continue your wellness journey."
-              : "Create a free account to get started."}
-          </p>
+              <h2 style={styles.header}>{isLogin ? "Welcome back" : "Join AyurSphere"}</h2>
+              <p style={styles.subheader}>
+                {isLogin
+                  ? "Sign in to continue your wellness journey."
+                  : "Create a free account to get started."}
+              </p>
 
           {redirectReason && <p style={styles.redirectBanner}>{redirectReason}</p>}
 
@@ -191,12 +221,14 @@ const AuthPage = () => {
             </button>
           </form>
 
-          <p style={styles.toggleText}>
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={() => setIsLogin(!isLogin)} style={styles.toggleButton}>
-              {isLogin ? "Create one" : "Sign in"}
-            </button>
-          </p>
+              <p style={styles.toggleText}>
+                {isLogin ? "Don't have an account? " : "Already have an account? "}
+                <button onClick={() => setIsLogin(!isLogin)} style={styles.toggleButton}>
+                  {isLogin ? "Create one" : "Sign in"}
+                </button>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -384,6 +416,14 @@ const styles = {
     color: "var(--color-danger)",
     fontSize: "0.82rem",
     margin: 0,
+  },
+  confirmationBox: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "0.75rem",
+    padding: "1rem 0",
   },
   redirectBanner: {
     backgroundColor: "var(--color-bg-alt)",
